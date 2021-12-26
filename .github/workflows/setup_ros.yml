@@ -20,13 +20,23 @@ jobs:
         run: |
           pwd
           ls
-      - name: Rosdep & Colcon Build
+      - name: List ros2_ws
+        run: |
+          cd ./test/ros2_ws
+          ls
+      - name: Colcon build root
+        run: |
+          colcon build --symlink-install
+      - name: Source
+        run: |
+          source /opt/ros/foxy/setup.sh
+      - name: Pipeline
         run: |
           cd ./test/ros2_ws
           source /opt/ros/foxy/setup.sh
           rosdep install -y --from-paths . --ignore-src
           colcon build --symlink-install
-          
+
       # - name: Build ROS2 cwd
       #   uses: phill4y/action-ros-ci@master
       #   with:
