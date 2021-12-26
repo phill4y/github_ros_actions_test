@@ -5,7 +5,7 @@ jobs:
   Build_Test_ROS2:
     runs-on: ubuntu-latest
     container:
-      image: osrf/ros2:devel
+      image: osrf/ros:foxy-desktop
     # defaults:
     #   run:
     #     working-directory: ./ros2_ws
@@ -20,8 +20,13 @@ jobs:
         run: |
           pwd
           ls
+      - name: Rosdep & Colcon Build
+        run: |
           cd ./test/ros2_ws
+          source /opt/ros/foxy/setup.sh
+          rosdep install -y --from-paths . --ignore-src
           colcon build --symlink-install
+          
       # - name: Build ROS2 cwd
       #   uses: phill4y/action-ros-ci@master
       #   with:
