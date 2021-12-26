@@ -5,7 +5,7 @@ jobs:
   Build_Test_ROS2:
     runs-on: ubuntu-latest
     container:
-      image: ubuntu:focal
+      image: osrf/ros2:devel
     # defaults:
     #   run:
     #     working-directory: ./ros2_ws
@@ -14,23 +14,21 @@ jobs:
         uses: ros-tooling/setup-ros@v0.2
         with:
           required-ros-distributions: foxy
-      # - name: List all files
-      #   run: |
-      #     pwd
-      #     ls
-      # - name: Checkout
-      #   uses: actions/checkout@v1
-      # - name: List all files
-      #   run: |
-      #     pwd
-      #     ls
-      - name: Build ROS2 cwd
-        uses: phill4y/action-ros-ci@master
-        with:
-          #package-name:
-          subdirectory: 'test/ros2_ws'
-          target-ros2-distro: foxy
-          skip-tests: true
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: List all files
+        run: |
+          pwd
+          ls
+          cd ./test/ros2_ws
+          colcon build --symlink-install
+      # - name: Build ROS2 cwd
+      #   uses: phill4y/action-ros-ci@master
+      #   with:
+      #     #package-name:
+      #     subdirectory: 'test/ros2_ws'
+      #     target-ros2-distro: foxy
+      #     skip-tests: true
   # Build_Test_ROS1:
   #   runs-on: ubuntu-latest
   #   container:
