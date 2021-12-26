@@ -13,6 +13,7 @@ jobs:
         run: |
           source /opt/ros/foxy/setup.bash
           cd ./test/ros2_ws
+          rosdep update
           rosdep install -y --from-paths . --ignore-src
           colcon build --symlink-install
         shell: bash
