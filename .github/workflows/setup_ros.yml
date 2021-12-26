@@ -27,7 +27,7 @@ jobs:
       - name: Build ROS2
         uses: ros-tooling/action-ros-ci@v0.2
         with:
-          package-name: ros_tutorials, roscpp_tutorials, rospy_tutorials, turtlesim
+          package-name:
           target-ros2-distro: foxy
           skip-tests: true
   Build_Test_ROS1:
@@ -55,6 +55,6 @@ jobs:
       - name: Build ROS2
         uses: ros-tooling/action-ros-ci@v0.2
         with:
-          package-name: ros_tutorials, roscpp_tutorials, rospy_tutorials, turtlesim
+          package-name:
           target-ros1-distro: noetic
           skip-tests: true
