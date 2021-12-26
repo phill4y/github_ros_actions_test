@@ -11,6 +11,7 @@ jobs:
         uses: actions/checkout@v1
       - name: Build Workspace
         run: |
+          sudo apt-get update -y
           source /opt/ros/foxy/setup.bash
           cd ./ros2_ws
           rosdep update
@@ -27,6 +28,7 @@ jobs:
       - name: Build Workspace
         run: |
           sudo apt-get update -y
+          sudo apt install python3-catkin-tools python3-osrf-pycommon
           source /opt/ros/noetic/setup.bash
           cd ./catkin_ws
           rosdep update
