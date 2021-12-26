@@ -1,38 +1,40 @@
-name: Setup ROS/ROS2 Runners
+name: Build & Test ROS/ROS2
 on: push
 
 jobs:
-  build_docker:
+  Build_Test_ROS2:
     runs-on: ubuntu-latest
     container:
       image: ubuntu:focal
+    defaults:
+      run:
+        working-directory: ./ros2_ws
     steps:
-      - name: Echo GITHUB_WORKSPACE
-        run: | 
-          echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
-      - name: Echo test GITHUB_WORKSPACE
-        env: 
-            GITHUB_WORKSPACE: 'test'
-        run: | 
-          echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
-      - name: Setup ROS
+      - name: Setup ROS 2
         uses: ros-tooling/setup-ros@v0.2
         with:
-          required-ros-distributions: noetic foxy
-      #- run: "source /opt/ros/galactic/setup.bash && ros2 run --help"
-      #- run: "source /opt/ros/noetic/setup.bash && rosnode --help"
-      # - name: Build ROS1
-      #   uses: ros-tooling/action-ros-ci@v0.2
-      #   with:
-      #     package-name: my_package
-      #     target-ros1-distro: noetic
-      #     skip-tests: true
+          required-ros-distributions: foxy
       - name: Build ROS2
-        env: 
-          GITHUB_WORKSPACE: 'test'
         uses: ros-tooling/action-ros-ci@v0.2
         with:
           package-name: ros_tutorials, roscpp_tutorials, rospy_tutorials, turtlesim
           target-ros2-distro: foxy
           skip-tests: true
-      
+  Build_Test_ROS1:
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:focal
+    defaults:
+      run:
+        working-directory: ./catkin_ws
+    steps:
+      - name: Setup ROS 2
+        uses: ros-tooling/setup-ros@v0.2
+        with:
+          required-ros-distributions: noetic
+      - name: Build ROS2
+        uses: ros-tooling/action-ros-ci@v0.2
+        with:
+          package-name: ros_tutorials, roscpp_tutorials, rospy_tutorials, turtlesim
+          target-ros1-distro: noetic
+          skip-tests: true
