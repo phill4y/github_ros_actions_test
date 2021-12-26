@@ -15,7 +15,7 @@ jobs:
         with:
           required-ros-distributions: foxy
       - name: Build ROS2
-        uses: phill4y/action-ros-ci@v1.1
+        uses: phill4y/action-ros-ci@master
         with:
           #package-name:
           subdirectory: 'test/ros2_ws'
