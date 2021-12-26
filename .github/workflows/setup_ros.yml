@@ -14,47 +14,38 @@ jobs:
         uses: ros-tooling/setup-ros@v0.2
         with:
           required-ros-distributions: foxy
-      # - name: List all files
-      #   run: |
-      #     pwd
-      #     ls
-      # - name: Checkout
-      #   uses: actions/checkout@v1
-      # - name: List all files
-      #   run: |
-      #     pwd
-      #     ls
       - name: Build ROS2
-        uses: ros-tooling/action-ros-ci@v0.2
+        uses: phillay/action-ros-ci@v1.0
         with:
-          package-name:
+          #package-name:
+          subdirectory: 'test/ros2_ws'
           target-ros2-distro: foxy
           skip-tests: true
-  Build_Test_ROS1:
-    runs-on: ubuntu-latest
-    container:
-      image: ubuntu:focal
-    # defaults:
-    #   run:
-    #     working-directory: ./catkin_ws
-    steps:
-      - name: Setup ROS 1
-        uses: ros-tooling/setup-ros@v0.2
-        with:
-          required-ros-distributions: noetic
-      # - name: List all files
-      #   run: |
-      #     pwd
-      #     ls
-      # - name: Checkout
-      #   uses: actions/checkout@v1
-      # - name: List all files
-      #   run: |
-      #     pwd
-      #     ls
-      - name: Build ROS1
-        uses: ros-tooling/action-ros-ci@v0.2
-        with:
-          package-name:
-          target-ros1-distro: noetic
-          skip-tests: true
+  # Build_Test_ROS1:
+  #   runs-on: ubuntu-latest
+  #   container:
+  #     image: ubuntu:focal
+  #   # defaults:
+  #   #   run:
+  #   #     working-directory: ./catkin_ws
+  #   steps:
+  #     - name: Setup ROS 1
+  #       uses: ros-tooling/setup-ros@v0.2
+  #       with:
+  #         required-ros-distributions: noetic
+  #     # - name: List all files
+  #     #   run: |
+  #     #     pwd
+  #     #     ls
+  #     # - name: Checkout
+  #     #   uses: actions/checkout@v1
+  #     # - name: List all files
+  #     #   run: |
+  #     #     pwd
+  #     #     ls
+  #     - name: Build ROS1
+  #       uses: ros-tooling/action-ros-ci@v0.2
+  #       with:
+  #         package-name:
+  #         target-ros1-distro: noetic
+  #         skip-tests: true
