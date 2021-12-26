@@ -2,18 +2,33 @@ name: Build & Test ROS/ROS2
 on: push
 
 jobs:
-  Build_Test_ROS2:
+  Build_Test_ROS2_Foxy:
     runs-on: ubuntu-latest
     container:
       image: osrf/ros:foxy-desktop
     steps:
-      - name: Checkout
+      - name: Checkout Repo
         uses: actions/checkout@v1
-      - name: Pipeline
+      - name: Build Workspace
         run: |
           source /opt/ros/foxy/setup.bash
-          cd ./test/ros2_ws
+          cd ./ros2_ws
           rosdep update
           rosdep install -y --from-paths . --ignore-src
           colcon build --symlink-install
+        shell: bash
+  Build_Test_ROS_Noetic:
+    runs-on: ubuntu-latest
+    container:
+      image: osrf/ros:noetic-desktop
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v1
+      - name: Build Workspace
+        run: |
+          source /opt/ros/noetic/setup.bash
+          cd ./catkin_ws
+          rosdep update
+          rosdep install -y --from-paths . --ignore-src
+          catkin build
         shell: bash
