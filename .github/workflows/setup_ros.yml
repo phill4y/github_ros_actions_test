@@ -14,16 +14,16 @@ jobs:
         uses: ros-tooling/setup-ros@v0.2
         with:
           required-ros-distributions: foxy
-      - name: List all files
-        run: |
-          pwd
-          ls
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: List all files
-        run: |
-          pwd
-          ls
+      # - name: List all files
+      #   run: |
+      #     pwd
+      #     ls
+      # - name: Checkout
+      #   uses: actions/checkout@v1
+      # - name: List all files
+      #   run: |
+      #     pwd
+      #     ls
       - name: Build ROS2
         uses: ros-tooling/action-ros-ci@v0.2
         with:
@@ -38,21 +38,21 @@ jobs:
     #   run:
     #     working-directory: ./catkin_ws
     steps:
-      - name: Setup ROS 2
+      - name: Setup ROS 1
         uses: ros-tooling/setup-ros@v0.2
         with:
           required-ros-distributions: noetic
-      - name: List all files
-        run: |
-          pwd
-          ls
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: List all files
-        run: |
-          pwd
-          ls
-      - name: Build ROS2
+      # - name: List all files
+      #   run: |
+      #     pwd
+      #     ls
+      # - name: Checkout
+      #   uses: actions/checkout@v1
+      # - name: List all files
+      #   run: |
+      #     pwd
+      #     ls
+      - name: Build ROS1
         uses: ros-tooling/action-ros-ci@v0.2
         with:
           package-name:
