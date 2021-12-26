@@ -27,6 +27,7 @@ jobs:
       - name: source Test
         run: |
           source /opt/ros/foxy/setup.bash
+        shell: bash
       - name: Colcon build root
         run: |
           cd ./test/ros2_ws
