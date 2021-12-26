@@ -6,14 +6,18 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ubuntu:focal
-    defaults:
-      run:
-        working-directory: ./ros2_ws
+    # defaults:
+    #   run:
+    #     working-directory: ./ros2_ws
     steps:
       - name: Setup ROS 2
         uses: ros-tooling/setup-ros@v0.2
         with:
           required-ros-distributions: foxy
+      - name: List all files
+        run: |
+          pwd
+          ls
       - name: Build ROS2
         uses: ros-tooling/action-ros-ci@v0.2
         with:
@@ -24,14 +28,18 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ubuntu:focal
-    defaults:
-      run:
-        working-directory: ./catkin_ws
+    # defaults:
+    #   run:
+    #     working-directory: ./catkin_ws
     steps:
       - name: Setup ROS 2
         uses: ros-tooling/setup-ros@v0.2
         with:
           required-ros-distributions: noetic
+      - name: List all files
+        run: |
+          pwd
+          ls
       - name: Build ROS2
         uses: ros-tooling/action-ros-ci@v0.2
         with:
