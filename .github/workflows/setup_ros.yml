@@ -26,6 +26,7 @@ jobs:
           ls
       - name: Colcon build root
         run: |
+          cd ./test/ros2_ws
           colcon build --symlink-install
       - name: Source
         run: |
