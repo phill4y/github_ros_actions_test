@@ -14,7 +14,7 @@ jobs:
         uses: ros-tooling/setup-ros@v0.2
         with:
           required-ros-distributions: foxy
-      - name: Build ROS2
+      - name: Build ROS2 cwd
         uses: phill4y/action-ros-ci@master
         with:
           #package-name:
