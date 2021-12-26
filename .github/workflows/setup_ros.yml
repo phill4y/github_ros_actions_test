@@ -6,34 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: osrf/ros:foxy-desktop
-    # defaults:
-    #   run:
-    #     working-directory: ./ros2_ws
     steps:
-      # - name: Setup ROS 2
-      #   uses: ros-tooling/setup-ros@v0.2
-      #   with:
-      #     required-ros-distributions: foxy
       - name: Checkout
         uses: actions/checkout@v1
-      - name: List all files
-        run: |
-          pwd
-          ls
-      - name: List ros2_ws
-        run: |
-          cd ./test/ros2_ws
-          ls
-      - name: source Test
-        run: |
-          source /opt/ros/foxy/setup.bash
-        shell: bash
-      - name: Colcon build root
-        run: |
-          source /opt/ros/foxy/setup.bash
-          cd ./test/ros2_ws
-          colcon build --symlink-install
-        shell: bash
       - name: Pipeline
         run: |
           source /opt/ros/foxy/setup.bash
@@ -41,39 +16,3 @@ jobs:
           rosdep install -y --from-paths . --ignore-src
           colcon build --symlink-install
         shell: bash
-
-      # - name: Build ROS2 cwd
-      #   uses: phill4y/action-ros-ci@master
-      #   with:
-      #     #package-name:
-      #     subdirectory: 'test/ros2_ws'
-      #     target-ros2-distro: foxy
-      #     skip-tests: true
-  # Build_Test_ROS1:
-  #   runs-on: ubuntu-latest
-  #   container:
-  #     image: ubuntu:focal
-  #   # defaults:
-  #   #   run:
-  #   #     working-directory: ./catkin_ws
-  #   steps:
-  #     - name: Setup ROS 1
-  #       uses: ros-tooling/setup-ros@v0.2
-  #       with:
-  #         required-ros-distributions: noetic
-  #     # - name: List all files
-  #     #   run: |
-  #     #     pwd
-  #     #     ls
-  #     # - name: Checkout
-  #     #   uses: actions/checkout@v1
-  #     # - name: List all files
-  #     #   run: |
-  #     #     pwd
-  #     #     ls
-  #     - name: Build ROS1
-  #       uses: ros-tooling/action-ros-ci@v0.2
-  #       with:
-  #         package-name:
-  #         target-ros1-distro: noetic
-  #         skip-tests: true
