@@ -7,11 +7,13 @@ jobs:
     container:
       image: ubuntu:focal
     steps:
+      - name: Echo GITHUB_WORKSPACE
+        run: | 
+          echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
       - name: Setup ROS
         uses: ros-tooling/setup-ros@v0.2
         with:
           required-ros-distributions: noetic foxy
-      - run: vcs --help
       #- run: "source /opt/ros/galactic/setup.bash && ros2 run --help"
       #- run: "source /opt/ros/noetic/setup.bash && rosnode --help"
       # - name: Build ROS1
@@ -21,9 +23,11 @@ jobs:
       #     target-ros1-distro: noetic
       #     skip-tests: true
       - name: Build ROS2
+        env: 
+          GITHUB_WORKSPACE: 'test'
         uses: ros-tooling/action-ros-ci@v0.2
         with:
-          package-name: my_package
+          package-name: [ros_tutorials, roscpp_tutorials, rospy_tutorials, turtlesim]
           target-ros2-distro: foxy
           skip-tests: true
       
