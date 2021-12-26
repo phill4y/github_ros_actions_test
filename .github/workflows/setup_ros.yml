@@ -10,10 +10,10 @@ jobs:
     #   run:
     #     working-directory: ./ros2_ws
     steps:
-      - name: Setup ROS 2
-        uses: ros-tooling/setup-ros@v0.2
-        with:
-          required-ros-distributions: foxy
+      # - name: Setup ROS 2
+      #   uses: ros-tooling/setup-ros@v0.2
+      #   with:
+      #     required-ros-distributions: foxy
       - name: Checkout
         uses: actions/checkout@v1
       - name: List all files
