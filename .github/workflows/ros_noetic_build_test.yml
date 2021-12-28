@@ -4,7 +4,7 @@ on:
     branches:
       - master
     paths:
-      - "ros2_ws/**"
+      - "catkin_ws/**"
   pull_request:
     types: [closed, opened, reopened]
 
