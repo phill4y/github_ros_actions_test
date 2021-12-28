@@ -1,0 +1,27 @@
+name: Build & Test ROS2 Foxy WS
+on: 
+  push:
+    branches:
+      - master
+    paths:
+      - "catkin_ws/**"
+  pull_request:
+    types: [closed, opened, reopened]
+
+jobs:
+  Build_Test_ROS2_Foxy:
+    runs-on: ubuntu-latest
+    container:
+      image: osrf/ros:foxy-desktop
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v1
+      - name: Build Workspace
+        run: |
+          sudo apt-get update -y
+          source /opt/ros/foxy/setup.bash
+          cd ./ros2_ws
+          rosdep update
+          rosdep install -y --from-paths . --ignore-src
+          colcon build --symlink-install
+        shell: bash
