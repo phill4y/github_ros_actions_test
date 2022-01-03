@@ -1,0 +1,31 @@
+name: Pull To Develop Foxy
+on: 
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+    build_foxy:
+      runs-on: ubuntu-latest
+      container:
+        image: osrf/ros:foxy-desktop
+      #if: github.event_name == 'push'
+      steps:
+        - name: Dump Github Context
+          env:
+            GITHUB_CONTEXT: ${{ toJson(github) }}
+          run: echo "$GITHUB_CONTEXT"
+        - name: Checkout Repo
+          #if: failure() # success() failure()
+          uses: actions/checkout@v2
+        - name: Build Workspace
+          #if: always()
+          # TODO: Add formatting tests
+          run: |
+            sudo apt-get update -y
+            source /opt/ros/foxy/setup.bash
+            cd ./ros2_ws
+            rosdep update
+            rosdep install -y --from-paths . --ignore-src
+            colcon build --symlink-install
+          shell: bash
