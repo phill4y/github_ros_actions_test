@@ -5,7 +5,7 @@ on:
       - develop
 
 jobs:
-    Build_Test_ROS_Noetic:
+    build_noetic:
       runs-on: ubuntu-latest
       container:
         image: osrf/ros:noetic-desktop

@@ -5,7 +5,7 @@ on:
       - develop
 
 jobs:
-    Build_Test_ROS2_Foxy:
+    build_foxy:
       runs-on: ubuntu-latest
       container:
         image: osrf/ros:foxy-desktop
