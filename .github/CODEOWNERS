@@ -1,0 +1,6 @@
+# This will enable persons to accept pull requests regarding specified folders and files
+* @phill4y
+*.py @phill4y
+/workflows/ @phill4y
+/catkin_ws/ @phill4y
+/ros2_ws/ @phill4y

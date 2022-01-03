@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: osrf/ros:noetic-desktop
+    if: github.event_name == 'push'
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v1

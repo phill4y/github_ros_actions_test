@@ -13,10 +13,17 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: osrf/ros:foxy-desktop
+    if: github.event_name == 'push'
     steps:
+      - name: Dump Github Context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: eccho "$GITHUB_CONTEXT"
       - name: Checkout Repo
+        if: failure() # success() failure()
         uses: actions/checkout@v1
       - name: Build Workspace
+        if: always()
         run: |
           sudo apt-get update -y
           source /opt/ros/foxy/setup.bash
