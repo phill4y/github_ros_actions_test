@@ -7,29 +7,6 @@ on:
       - "catkin_ws/**"
 
 jobs:
-    Build_Test_ROS2_Foxy:
-      runs-on: ubuntu-latest
-      container:
-        image: osrf/ros:foxy-desktop
-      #if: github.event_name == 'push'
-      steps:
-        - name: Dump Github Context
-          env:
-            GITHUB_CONTEXT: ${{ toJson(github) }}
-          run: eccho "$GITHUB_CONTEXT"
-        - name: Checkout Repo
-          #if: failure() # success() failure()
-          uses: actions/checkout@v2
-        - name: Build Workspace
-          #if: always()
-          run: |
-            sudo apt-get update -y
-            source /opt/ros/foxy/setup.bash
-            cd ./ros2_ws
-            rosdep update
-            rosdep install -y --from-paths . --ignore-src
-            colcon build --symlink-install
-          shell: bash
     Build_Test_ROS_Noetic:
       runs-on: ubuntu-latest
       container:
