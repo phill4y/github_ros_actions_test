@@ -3,8 +3,6 @@ on:
   pull_request:
     branches:
       - develop
-    paths:
-      - "ros2_ws/**"
 
 jobs:
     Build_Test_ROS2_Foxy:

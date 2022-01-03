@@ -3,8 +3,6 @@ on:
   pull_request:
     branches: 
       - develop
-    paths:
-      - "catkin_ws/**"
 
 jobs:
     Build_Test_ROS_Noetic:
